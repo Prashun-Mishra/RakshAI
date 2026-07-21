@@ -1,0 +1,3 @@
+import { StartSessionForm } from "@/components/start-session-form";
+
+export default function NewEmergencyPage() { return <main className="min-w-0 flex-1 p-6 sm:p-10"><div className="mx-auto max-w-2xl"><p className="text-sm font-medium text-sky-700">New emergency session</p><h1 className="mt-1 text-3xl font-semibold tracking-tight text-navy">Tell us what is happening.</h1><p className="mt-3 text-slate-600">We’ll ask careful follow-up questions and suggest safer immediate next steps.</p><div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-950"><strong>For immediate danger, call your local emergency number first.</strong> Do not wait for an AI assessment.</div><StartSessionForm /></div></main>; }
