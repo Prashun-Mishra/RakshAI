@@ -1,4 +1,4 @@
-# 🛡️ RakshAI (GuardianAI) – AI-Powered Emergency Response Platform
+# 🛡️ RakshAI – AI-Powered Emergency Response Platform
 
 ![Next.js 15](https://img.shields.io/badge/Next.js-15.1-black?style=for-the-badge&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue?style=for-the-badge&logo=typescript)
@@ -6,7 +6,7 @@
 ![Gemini AI](https://img.shields.io/badge/Gemini-2.5_Flash-8E75FF?style=for-the-badge&logo=google-gemini)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38BDF8?style=for-the-badge&logo=tailwind-css)
 
-**RakshAI (GuardianAI)** is an intelligent, real-time emergency triage and first-aid response platform designed to assist users during the critical first minutes of a medical emergency. Powered by Google Gemini 2.5/2.0 Flash, RakshAI assesses urgent situations, analyzes visible injury photos, locates nearby emergency services, and generates downloadable PDF clinical summary reports.
+**RakshAI** is an intelligent, real-time emergency triage and first-aid response platform designed to assist users during the critical first minutes of a medical emergency. Powered by Google Gemini 2.5/2.0 Flash, RakshAI assesses urgent situations, analyzes visible injury photos, locates nearby emergency services, and generates downloadable PDF clinical summary reports.
 
 ---
 

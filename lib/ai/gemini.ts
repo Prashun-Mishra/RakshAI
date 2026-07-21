@@ -62,7 +62,7 @@ export async function assessEmergency(message: string, priorMessages: string[] =
 
   const ai = new GoogleGenAI({ apiKey });
   const context = priorMessages.slice(-6).join("\n");
-  const prompt = `You are GuardianAI, an emergency first-aid triage assistant. You provide cautious, concise, non-diagnostic guidance for the first critical minutes of an emergency. You are not a replacement for emergency services or a clinician. Never state that a condition is certain. For HIGH or CRITICAL severity, explicitly tell the person to call their local emergency number or seek emergency care now. Do not recommend prescription medicines or risky procedures. If there is any immediate threat to life, say to call emergency services first.
+  const prompt = `You are RakshAI, an emergency first-aid triage assistant. You provide cautious, concise, non-diagnostic guidance for the first critical minutes of an emergency. You are not a replacement for emergency services or a clinician. Never state that a condition is certain. For HIGH or CRITICAL severity, explicitly tell the person to call their local emergency number or seek emergency care now. Do not recommend prescription medicines or risky procedures. If there is any immediate threat to life, say to call emergency services first.
 
 Return ONLY a JSON object matching exactly this shape:
 {"severity":"LOW|MODERATE|HIGH|CRITICAL","confidence":"low|medium|high","likelyConditions":["possible, non-certain condition"],"firstAid":["safe immediate action"],"questions":["brief next question"],"disclaimer":"medical safety disclaimer","summary":"clear plain-language assessment"}
@@ -87,12 +87,12 @@ ${message}`;
       const aiText = response.text ?? "";
       const parsed = assessmentSchema.safeParse(JSON.parse(extractJson(aiText)));
       if (!parsed.success) throw new Error("INVALID_AI_RESPONSE");
-      console.log(`[GuardianAI] Chat responded using model: ${modelName}`);
+      console.log(`[RakshAI] Chat responded using model: ${modelName}`);
       return parsed.data;
     } catch (error) {
       lastError = error;
       if (isRetryableModelError(error)) {
-        console.warn(`[GuardianAI] Model ${modelName} unavailable, trying next...`);
+        console.warn(`[RakshAI] Model ${modelName} unavailable, trying next...`);
         continue;
       }
       throw error; // non-retryable — re-throw immediately
@@ -131,7 +131,7 @@ export async function analyzeInjuryImage(imageUrl: string) {
   const image = Buffer.from(await fetchResponse.arrayBuffer());
   if (image.length === 0 || image.length > 8 * 1024 * 1024) throw new Error("INVALID_IMAGE");
 
-  const prompt = `You are GuardianAI's cautious visual first-aid assistant. Assess only visible injury features; never diagnose or claim certainty. If there may be severe bleeding, a deep wound, burn, deformity, loss of circulation, an eye injury, or another serious concern, use HIGH or CRITICAL and tell the person to call emergency services or seek urgent care. Return ONLY JSON: {"injuryType":"possible visible injury","severity":"LOW|MODERATE|HIGH|CRITICAL","confidence":"low|medium|high","recommendations":["safe immediate action"]}.`;
+  const prompt = `You are RakshAI's cautious visual first-aid assistant. Assess only visible injury features; never diagnose or claim certainty. If there may be severe bleeding, a deep wound, burn, deformity, loss of circulation, an eye injury, or another serious concern, use HIGH or CRITICAL and tell the person to call emergency services or seek urgent care. Return ONLY JSON: {"injuryType":"possible visible injury","severity":"LOW|MODERATE|HIGH|CRITICAL","confidence":"low|medium|high","recommendations":["safe immediate action"]}.`;
 
   const ai = new GoogleGenAI({ apiKey });
 
@@ -156,12 +156,12 @@ export async function analyzeInjuryImage(imageUrl: string) {
       const aiText = response.text ?? "";
       const parsed = imageAssessmentSchema.safeParse(JSON.parse(extractJson(aiText)));
       if (!parsed.success) throw new Error("INVALID_AI_RESPONSE");
-      console.log(`[GuardianAI] Image analyzed using model: ${modelName}`);
+      console.log(`[RakshAI] Image analyzed using model: ${modelName}`);
       return parsed.data;
     } catch (error) {
       lastError = error;
       if (isRetryableModelError(error)) {
-        console.warn(`[GuardianAI] Image model ${modelName} unavailable, trying next...`);
+        console.warn(`[RakshAI] Image model ${modelName} unavailable, trying next...`);
         continue;
       }
       throw error;

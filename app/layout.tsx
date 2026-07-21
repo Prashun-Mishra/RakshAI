@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "GuardianAI | Emergency guidance when every minute matters",
+  title: "RakshAI | Emergency guidance when every minute matters",
   description: "AI-assisted emergency assessment and response support.",
 };
 

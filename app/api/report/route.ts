@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     const pdf = await createEmergencyPdf({ ...session, messages });
     const summary = messages.filter((item) => item.role === "assistant").map((item) => item.message).at(-1) ?? session.title;
     await EmergencyReport.create({ sessionId, summary, pdfUrl: "" });
-    const filename = `guardianai-report-${session._id.toString()}.pdf`;
+    const filename = `rakshai-report-${session._id.toString()}.pdf`;
     return new NextResponse(new Uint8Array(pdf), { headers: { "Content-Type": "application/pdf", "Content-Disposition": `attachment; filename="${filename}"`, "Cache-Control": "no-store" } });
   } catch (error) { console.error("Report error", error); return NextResponse.json({ error: error instanceof Error && error.message === "UNAUTHORIZED" ? "Unauthorized" : "Unable to generate the report." }, { status: error instanceof Error && error.message === "UNAUTHORIZED" ? 401 : 500 }); }
 }
